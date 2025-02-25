@@ -1,0 +1,66 @@
+					create database coffee_sales;
+					
+                    use coffee_sales;
+					
+                    select * from coffee;
+
+
+# DATA CLEANING:-------
+-- 1) CHECKING FOR NULL VALUES OR MISSING :---------
+
+			SELECT * FROM COFFEE 
+            WHERE CARD = '';
+            
+-- 2) REPLACING NULL OR MISSING VALUE IN THE CARD COLUMN :-----------
+				   
+			UPDATE COFFEE
+            SET CARD = 'CASH'
+            WHERE CARD = '';
+       
+
+-- 3) CONVERTING DATE AND DATETIME COLUMNS IN THE CORRECT FORMAT :--------
+
+			alter table coffee
+			modify date date,
+			modify datetime datetime;
+
+-- 4) LET'S CHECK THAT ALL CULUMNS OF COFFEE TABLE HAVING CORRECT FORMAT OR NOT :----------
+			describe coffee;
+
+
+
+# DATA ANALYZING :------
+-- 1) TOTAL SALES BY COFFEE_TYPE :-----------
+
+			SELECT COFFEE_NAME, ROUND(SUM(MONEY),2) AS TOTAL_SALES
+			FROM COFFEE 
+			GROUP BY COFFEE_NAME
+			ORDER BY TOTAL_SALES DESC;
+
+-- 2) MOST POPULAR COFFEE BY ORDER COUNT :------------
+
+			SELECT COFFEE_NAME, COUNT(*) AS NUMBER_OF_ORDERS
+			FROM COFFEE 
+			GROUP BY COFFEE_NAME
+			ORDER BY NUMBER_OF_ORDERS DESC;
+
+-- 3) SALES TREND OVER TIME (DAILY) :-------------------
+
+			SELECT DATE, ROUND(SUM(MONEY),2) AS DAILY_SALES
+			FROM COFFEE 
+			GROUP BY DATE
+			ORDER BY DATE;
+
+-- 4) PAYMENT METHOD DISTRIBUTION :---------------
+
+			SELECT CASH_TYPE, COUNT(*) AS TOTAL_ORDERS
+			FROM COFFEE 
+			GROUP BY CASH_TYPE;
+
+-- 5) PEAK SALES HOURS :-----------------
+
+			SELECT HOUR(DATETIME) AS HOUR_OF_DAY, ROUND(SUM(MONEY),2) AS TOTAL_SALES_REVENUE
+			FROM COFFEE 
+			GROUP BY HOUR_OF_DAY
+			ORDER BY HOUR_OF_DAY ;
+
