@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-######This project analyzes coffee sales data using SQL for data cleaning and analysis and Power BI for visualization. The goal is to extract meaningful insights about coffee sales trends, customer preferences, and revenue distribution.
+###### This project analyzes coffee sales data using SQL for data cleaning and analysis and Power BI for visualization. The goal is to extract meaningful insights about coffee sales trends, customer preferences, and revenue distribution.
 
 ## Tools Used
 
